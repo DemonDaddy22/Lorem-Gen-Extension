@@ -1,6 +1,6 @@
 import './App.scss';
-import AppError from './components/AppError';
 import Description from './components/Description';
+import Generator from './components/Generator';
 import Header from './components/Header';
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
                 <br />
                 It's <em className='pitch'>fast</em>, <em className='pitch'>meaningless</em> and <em className='pitch'>not-so-boring</em>!
             </Description>
-            <AppError label='Something went wrong!' />
+            <Generator />
         </div>
     );
 };

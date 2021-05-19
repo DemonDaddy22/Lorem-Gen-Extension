@@ -1,0 +1,50 @@
+@mixin imgWrapper($opacity, $position, $positionOne, $positionOneVal, $positionTwo, $positionTwoVal, $transform) {
+    opacity: $opacity;
+    position: $position;
+    #{$positionOne}: $positionOneVal;
+    #{$positionTwo}: $positionTwoVal;
+    transform: $transform;
+}
+
+.generator {
+    position: relative;
+}
+
+.outputboxWrapper {
+    position: relative;
+
+    .imageOneWrapper {
+        @include imgWrapper(0.75, absolute, right, 0, top, 0, translate(50%, -50%));
+    }
+
+    .imageTwoWrapper {
+        @include imgWrapper(0.75, absolute, left, 0, bottom, 0, translate(-60%, -75%));
+    }
+
+    .imageThreeWrapper {
+        @include imgWrapper(0.5, absolute, right, 0, bottom, 0, translate(-10%, 75%) rotate(180deg));
+    }
+}
+
+.optionsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.btnWrapper {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 16px;
+    text-align: left;
+}
+
+.loaderWrapper {
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translateX(-50%);
+    z-index: 99;
+}

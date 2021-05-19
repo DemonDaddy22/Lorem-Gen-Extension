@@ -1,0 +1,32 @@
+@import '../../variables.scss';
+
+.inputContainer {
+    text-align: left;
+}
+
+.inputLabel {
+    color: $accent;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: -0.25px;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.input {
+    background-color: transparent;
+    border: $border;
+    border-radius: 4px;
+    color: $accent;
+    font-size: 0.85rem;
+    font-weight: 600;
+    outline: none;
+    padding: 7px 8px;
+    transition: border 0.15s;
+
+    &:hover,
+    &:active {
+        outline: none;
+        border-color: $accent;
+    }
+}

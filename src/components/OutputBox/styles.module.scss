@@ -1,0 +1,22 @@
+@import '../../variables.scss';
+
+.outputBox {
+    background-color: $primary;
+    border: $border;
+    border-radius: 4px;
+    color: $accent;
+    display: flex;
+    flex-direction: column;
+    font-weight: 200;
+    gap: 0.75rem;
+    height: 300px;
+    margin: 0 auto;
+    overflow-y: auto;
+    position: relative;
+    text-align: left;
+    z-index: 1;
+}
+
+.outputContent {
+    padding: 1rem;
+}
