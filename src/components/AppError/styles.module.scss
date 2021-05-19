@@ -1,0 +1,19 @@
+@import '../../variables.scss';
+
+.appError {
+    margin: 2rem;
+}
+
+.errorImageWrapper {
+    margin: 0 auto;
+    height: 200px;
+    width: 350px;
+}
+
+.errorLabel {
+    color: $secondary;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    opacity: 0.5;
+    text-align: center;
+}
