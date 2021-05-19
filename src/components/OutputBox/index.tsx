@@ -10,23 +10,25 @@ interface OutputBoxProps {
 const OutputBox = (props: OutputBoxProps) => {
     const { output, style } = props;
 
-    return output?.length ? (
+    return (
         <div className={classes.outputBox} style={style}>
             <div className={classes.outputContent}>
-                {output.map((sentence, i) => (
-                    <React.Fragment key={`sentence-${i}`}>
-                        {sentence}
-                        {i < output.length - 1 && (
-                            <>
-                                <br />
-                                <br />
-                            </>
-                        )}
-                    </React.Fragment>
-                ))}
+                {output?.length
+                    ? output.map((sentence, i) => (
+                          <React.Fragment key={`sentence-${i}`}>
+                              {sentence}
+                              {i < output.length - 1 && (
+                                  <>
+                                      <br />
+                                      <br />
+                                  </>
+                              )}
+                          </React.Fragment>
+                      ))
+                    : ''}
             </div>
         </div>
-    ) : null;
+    );
 };
 
 export default OutputBox;

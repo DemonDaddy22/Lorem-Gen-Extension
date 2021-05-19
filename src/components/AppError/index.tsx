@@ -13,7 +13,7 @@ const AppError = (props: ErrorProps) => {
     return (
         <div className={classes.appError} style={containerStyle}>
             <div className={classes.errorImageWrapper}>
-                <ErrorImage height='inherit' width='inherit' />
+                <ErrorImage height={200} width={350} />
             </div>
             <div className={classes.errorLabel}>{label}</div>
         </div>

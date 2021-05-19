@@ -1,0 +1,50 @@
+@import '../../variables.scss';
+
+@mixin circle($size, $borderRadius, $color) {
+    background-color: $color;
+    border-radius: $borderRadius;
+    height: $size;
+    width: $size;
+}
+
+.loaderWrapper {
+    position: relative;
+}
+
+.circleOne {
+    @include circle(48px, 50%, rgba($color: $accent, $alpha: 0.9));
+    position: absolute;
+    transform: scale(1);
+    animation: animateCircleOne 1s ease-in-out infinite both;
+}
+
+.circleTwo {
+    @include circle(48px, 50%, rgba($color: $accent, $alpha: 0.1));
+    position: absolute;
+    transform: scale(0);
+    animation: animateCircleTwo 1s ease-in-out infinite both;
+}
+
+@keyframes animateCircleOne {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes animateCircleTwo {
+    0% {
+        transform: scale(0);
+    }
+    50% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(0);
+    }
+}

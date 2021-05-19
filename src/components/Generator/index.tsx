@@ -10,6 +10,7 @@ import classes from './styles.module.scss';
 import ClipBoard from '../../assets/clipboard';
 import ClipBoardChecked from '../../assets/clipboardChecked';
 import AppError from '../AppError';
+import Loader from '../Loader';
 
 export const CHOICES = Object.freeze({
     WORD: { id: 0, label: 'Word', key: 'words' },
@@ -31,6 +32,22 @@ const Generator = () => {
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(false);
 
+    const fetchLoremIpsum = async () => {
+        setLoading(true);
+        try {
+            const res = await fetch(
+                `${LOREM_API_URI}?q=${choice.key}&count=${count}&startWithLorem=${startWithLorem.id === 11}`
+            );
+            const data = await res.json();
+            setOutput(data?.data ? data.data : []);
+            setError(false);
+        } catch (err) {
+            if (error) setError(true);
+        } finally {
+            setLoading(false);
+        }
+    };
+
     const copyTextToClipboard = React.useCallback((content: string) => {
         if (!content) return;
 
@@ -45,29 +62,13 @@ const Generator = () => {
 
         try {
             document.execCommand('copy');
-            setError(false);
+            if (error) setError(false);
         } catch (err) {
             setError(true);
         }
 
         document.body.removeChild(textArea);
-    }, []);
-
-    const fetchLoremIpsum = async () => {
-        setLoading(true);
-        try {
-            const res = await fetch(
-                `${LOREM_API_URI}?q=${choice.key}&count=${count}&startWithLorem=${startWithLorem.id === 11}`
-            );
-            const data = await res.json();
-            setOutput(data?.data ? data.data : []);
-            setError(false);
-        } catch (err) {
-            setError(true);
-        } finally {
-            setLoading(false);
-        }
-    };
+    }, [error]);
 
     const handleCountChange = React.useCallback(e => {
         setCount(e.target.value);
@@ -85,6 +86,9 @@ const Generator = () => {
     const renderContent = () =>
         !error && (
             <div className={classes.generator}>
+                {loading && <div className={classes.loader}>
+                    <Loader />
+                </div>}
                 <div className={classes.optionsWrapper}>
                     <CountInput count={count} label='Count' onChange={handleCountChange} />
                     <Choices

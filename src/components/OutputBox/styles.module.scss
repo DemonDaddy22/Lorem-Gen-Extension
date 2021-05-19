@@ -4,19 +4,21 @@
     background-color: $primary;
     border: $border;
     border-radius: 4px;
-    color: $accent;
     display: flex;
     flex-direction: column;
-    font-weight: 200;
     gap: 0.75rem;
-    height: 300px;
+    height: 250px;
     margin: 0 auto;
     overflow-y: auto;
+    padding: 1rem;
     position: relative;
     text-align: left;
+    width: 568px;
     z-index: 1;
 }
 
 .outputContent {
-    padding: 1rem;
+    color: $accent;
+    font-size: 0.9rem;
+    font-weight: 200;
 }

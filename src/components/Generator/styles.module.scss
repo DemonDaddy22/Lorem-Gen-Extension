@@ -8,6 +8,13 @@
 
 .generator {
     position: relative;
+
+    .loader {
+        left: 45%;
+        position: absolute;
+        top: 45%;
+        z-index: 10;
+    }
 }
 
 .outputboxWrapper {
@@ -30,7 +37,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-top: 2.5rem;
+    margin-top: 1rem;
 }
 
 .btnWrapper {
