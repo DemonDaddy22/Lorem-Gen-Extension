@@ -1,5 +1,4 @@
 ## Read this before making any contributions to this project
----
 
 **Fork** this repository and create a new branch (using ```git checkout -b ${BRANCH_NAME}```) on your system and start working on the change there.
 
