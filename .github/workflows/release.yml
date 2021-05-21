@@ -1,0 +1,24 @@
+name: 'Lorem Gen Chrome Extension Release'
+on:
+    push:
+        branches:
+            - 'master'
+jobs:
+    release:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node-version: ['14']
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
+            - name: Install dependencies
+              run: npm install
+            - name: Run linting
+              run: npm run lint:fix
+            - name: Semantic Release
+              run: npm run semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

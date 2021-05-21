@@ -1,5 +1,13 @@
 @import '../../variables.scss';
 
+.headerWrapper {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+}
+
 .header {
     font-size: 2rem;
     font-weight: 800;
