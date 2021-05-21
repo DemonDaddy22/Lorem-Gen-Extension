@@ -1,0 +1,15 @@
+@import '../../variables.scss';
+
+.footer {
+    align-items: center;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.divider {
+    align-self: stretch;
+    background-color: rgba($color: $secondary, $alpha: 0.1);
+    width: 1px;
+}
