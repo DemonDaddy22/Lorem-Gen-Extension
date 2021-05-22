@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Square from '../../assets/square';
 import Triangle from '../../assets/triangle';
-import { LOREM_API_URI } from '../../constants';
+import { DEFAULT_ERROR_MESSAGE, LOREM_API_URI } from '../../constants';
 import Button from '../Button';
 import Choices from '../Choices';
 import CountInput from '../CountInput';
@@ -31,6 +31,8 @@ const Generator = () => {
     const [isCopied, setIsCopied] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
     const [error, setError] = React.useState(false);
+    const [errorMessage, setErrorMessage] = React.useState(DEFAULT_ERROR_MESSAGE);
+    const [copyFocus, setCopyFocus] = React.useState(false);
 
     const fetchLoremIpsum = async () => {
         setLoading(true);
@@ -39,36 +41,58 @@ const Generator = () => {
                 `${LOREM_API_URI}?q=${choice.key}&count=${count}&startWithLorem=${startWithLorem.id === 11}`
             );
             const data = await res.json();
+            if (data?.err?.isError) throw new Error(data.err?.message);
             setOutput(data?.data ? data.data : []);
-            setError(false);
+            setCopyFocus(true);
+            if (error) setError(false);
         } catch (err) {
-            if (error) setError(true);
+            setError(true);
+            setErrorMessage(err.message);
         } finally {
             setLoading(false);
         }
     };
 
-    const copyTextToClipboard = React.useCallback((content: string) => {
-        if (!content) return;
+    React.useEffect(() => {
+        fetchLoremIpsum();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-        let textArea = document.createElement('textarea');
-        textArea.value = content;
-        textArea.style.top = '0';
-        textArea.style.left = '0';
-        textArea.style.position = 'fixed';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
+    const refreshGenerator = React.useCallback(() => {
+        setError(false);
+        setErrorMessage(DEFAULT_ERROR_MESSAGE);
+        setCount(4);
+        fetchLoremIpsum();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-        try {
-            document.execCommand('copy');
-            if (error) setError(false);
-        } catch (err) {
-            setError(true);
-        }
+    const copyTextToClipboard = React.useCallback(
+        (content: string) => {
+            if (!content) return;
 
-        document.body.removeChild(textArea);
-    }, [error]);
+            let textArea = document.createElement('textarea');
+            textArea.value = content;
+            textArea.style.top = '0';
+            textArea.style.left = '0';
+            textArea.style.position = 'fixed';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                document.execCommand('copy');
+                if (error) setError(false);
+            } catch (err) {
+                setError(true);
+                setErrorMessage(err.message);
+            } finally {
+                setCopyFocus(false);
+            }
+
+            document.body.removeChild(textArea);
+        },
+        [error]
+    );
 
     const handleCountChange = React.useCallback(e => {
         setCount(e.target.value);
@@ -86,9 +110,11 @@ const Generator = () => {
     const renderContent = () =>
         !error && (
             <div className={classes.generator}>
-                {loading && <div className={classes.loader}>
-                    <Loader />
-                </div>}
+                {loading && (
+                    <div className={classes.loader}>
+                        <Loader />
+                    </div>
+                )}
                 <div className={classes.optionsWrapper}>
                     <CountInput count={count} label='Count' onChange={handleCountChange} />
                     <Choices
@@ -122,7 +148,7 @@ const Generator = () => {
                     </Button>
                     <Button
                         id='copy-btn'
-                        focus
+                        focus={copyFocus}
                         onClick={handleCopy}
                         style={{ alignItems: 'center', display: 'flex', gap: 4, paddingRight: 8 }}
                     >
@@ -133,12 +159,7 @@ const Generator = () => {
             </div>
         );
 
-    const renderError = () => !loading && error && <AppError label='Something went wrong! Please try again later.' />;
-
-    React.useEffect(() => {
-        fetchLoremIpsum();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const renderError = () => !loading && error && <AppError buttonLabel='Refresh' label={errorMessage} onClick={refreshGenerator} />;
 
     return (
         <>
