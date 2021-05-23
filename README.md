@@ -1,10 +1,10 @@
 <h1 align='center'>
- <a href='https://demondaddy22.github.io/Lorem-Gen/'>Lorem Gen</a>
+ <a href='https://chrome.google.com/webstore/detail/lorem-gen/abbpnienhlpmlfjjoiogknmjknlaeadp/related'>Lorem Gen</a>
 </h1>
 
 <p align='center'>
     <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/DemonDaddy22/Lorem-Gen/Deploy%20Lorem%20Gen?color=%23F9906F&style=for-the-badge">
-    <img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/DemonDaddy22/Lorem-Gen-Extension?color=%23338DAE&style=for-the-badge">
+    <img alt="Chrome Web Store" src="https://img.shields.io/chrome-web-store/v/abbpnienhlpmlfjjoiogknmjknlaeadp?color=%231199EE&style=for-the-badge">
     <img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/DemonDaddy22/Lorem-Gen-Extension?color=%2350C87C&style=for-the-badge">
 </p>
 
@@ -18,7 +18,7 @@ A quick and easy way to generate [*Lorem Ipsum*](https://en.wikipedia.org/wiki/L
 
 You can find the lorem ipsum generator website [here](https://demondaddy22.github.io/Lorem-Gen/).
 
-**Chrome extension coming soon!**
+Add Chrome extension from [here](https://chrome.google.com/webstore/detail/lorem-gen/abbpnienhlpmlfjjoiogknmjknlaeadp/related).
 
 ## Changelog
 
