@@ -8,7 +8,7 @@ interface FooterLinkProps {
 const FooterLink = (props: FooterLinkProps) => {
     const { uri, label } = props;
     return (
-        <a className={classes.footerLink} href={uri}>
+        <a target='__blank' rel='noreferrer' className={classes.footerLink} href={uri}>
             {label}
         </a>
     );
