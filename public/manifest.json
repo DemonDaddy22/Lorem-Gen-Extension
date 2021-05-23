@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Lorem Gen",
   "description": "Quickly generate lorem ipsum text to bootstrap your content!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "icons": {
     "128": "logo-v2-128.png",
     "192": "logo-v2-192.png"
