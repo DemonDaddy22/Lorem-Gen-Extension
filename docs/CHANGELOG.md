@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/DemonDaddy22/Lorem-Gen-Extension/compare/v1.0.1...v1.0.2) (2021-05-23)
+
+
+### Bug Fixes
+
+* Add target attribute to version link ([d88cb3a](https://github.com/DemonDaddy22/Lorem-Gen-Extension/commit/d88cb3a743f53882c7ebe95b517156d8f4847a67))
+
 ## [1.0.1](https://github.com/DemonDaddy22/Lorem-Gen-Extension/compare/v1.0.0...v1.0.1) (2021-05-23)
 
 
